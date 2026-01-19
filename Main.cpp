@@ -48,4 +48,26 @@ void simulateRace(
              << Drivers[driverIndex].name
              << " (" << Drivers[driverIndex].team << ") \n";
     }
+
+    //Award points for top 10
+    for(int pos = 0; pos < driverCount && pos < 10; pos++){
+        int index = order[pos];
+        Standings[index].points += pointsTable[pos];
+    }
 }
+
+void displayStandings(vector<Driver>& standings) {
+        sort(standings.begin(), standings.end(),
+            [](const Driver& a, const Driver& b){
+                return a.points > b.points;
+        });
+
+        cout << "\n === Standings === \n";
+        for(int i = 0; i < standings.size(); i++){
+            cout << (i+1) << ". "
+                 << standings[i].name
+                 << "( " <<standings[i].team <<") "
+                 << " - " << standings[i].points
+                 << " points\n";
+        }
+    }
