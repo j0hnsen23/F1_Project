@@ -12,4 +12,5 @@ The program allows you to:
 ## Preview
 
 How the program works:
-![alt text](F1Project1.png) ![alt text](F1Project2.png) ![alt text](F1Project3.png) ![alt text](F1Project4.png)
+
+- <img src = C:\Users\nicol\Pictures\Projects\F1Project1.png>
