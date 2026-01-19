@@ -37,4 +37,15 @@ void simulateRace(
         order[i] = order[j];
         order[j] = temp;
     }
+
+    //Print the result of the race
+    cout << "\n === Race Result === \n";
+
+    for (int position = 0; position < driverCount; position++){
+        int driverIndex = order[position];
+
+        cout << "P" << (position + 1) << " | "
+             << Drivers[driverIndex].name
+             << " (" << Drivers[driverIndex].team << ") \n";
+    }
 }
