@@ -20,5 +20,21 @@ void simulateRace(
           mt19937& RandomNumberGenerator
 
 ){
-    
+    int driverCount = Drivers.size();
+
+    //Array sets the "Qualifying" order for the race
+    int order[22]; //22 drivers from the 2026 season and onwards
+    for(int i = 0; i < driverCount; i++){
+        order[i] = i;
+    }
+
+    //Shuffle the array
+    for(int i = 0; i < driverCount; i++){
+        uniform_int_distribution<int> dist(0, driverCount -1);
+        int j = dist(RandomNumberGenerator);
+
+        int temp = order[i];
+        order[i] = order[j];
+        order[j] = temp;
+    }
 }
