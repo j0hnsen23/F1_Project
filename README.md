@@ -8,3 +8,8 @@ The program allows you to:
 - Sum up points
 - Calculate the World Drivers' Champion
 - Calculate the Constructors' World Champion
+
+## Preview
+
+How the program works:
+![alt text](F1Project1.png) ![alt text](F1Project2.png) ![alt text](F1Project3.png) ![alt text](F1Project4.png)
