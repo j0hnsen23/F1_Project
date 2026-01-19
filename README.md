@@ -13,7 +13,7 @@ The program allows you to:
 
 How the program works:
 ---
-- ![alt text](F1Project1.png) 
-- ![alt text](F1Project2.png) 
-- ![alt text](F1Project3.png) 
-- ![alt text](F1Project4.png)
+![alt text](F1Project1.png) 
+![alt text](F1Project2.png) 
+![alt text](F1Project3.png) 
+![alt text](F1Project4.png)
