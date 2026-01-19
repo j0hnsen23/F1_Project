@@ -66,8 +66,58 @@ void displayStandings(vector<Driver>& standings) {
         for(int i = 0; i < standings.size(); i++){
             cout << (i+1) << ". "
                  << standings[i].name
-                 << "( " <<standings[i].team <<") "
+                 << "(" <<standings[i].team <<") "
                  << " - " << standings[i].points
                  << " points\n";
         }
     }
+
+int main(){
+    
+    // Driver
+    std::vector<Driver> drivers = {
+        {"Max Verstappen", "Red Bull", 0},
+        {"Isack Hadjar", "Red Bull", 0},
+        {"Lewis Hamilton", "Ferrari", 0},
+        {"Charles Leclerc", "Ferrari", 0},
+        {"Lando Norris", "McLaren", 0},
+        {"Oscar Piastri", "McLaren", 0},
+        {"George Russell", "Mercedes", 0},
+        {"Andrea Kimi Antonelli", "Mercedes", 0},
+        {"Lance Stroll", "Aston Martin", 0},
+        {"Fernando Alonso", "Aston Martin", 0},
+        {"Alex Albon", "Williams", 0},
+        {"Carlos Sainz", "Williams", 0},
+        {"Liam Lawson","Racing Bulls",0},
+        {"Arvid Lindblad","Racing Bulls",0},
+        {"Esteban Ocon","Haas",0},
+        {"Ollie Bearman","Haas",0},
+        {"Nico Hulkenberg","Audi",0},
+        {"Gabriel Bortoleto","Audi",0},
+        {"Pierre Gasly","Alpine",0},
+        {"Franco Colapinto","Alpine",0},
+        {"Valtteri Bottas","Cadillac",0},
+        {"Sergio Perez","Cadillac",0}
+    };
+
+    vector<Driver> standings = drivers;
+
+    random_device RandomDevice;
+    mt19937 rng (RandomDevice());
+
+    int numberOfRaces;
+    cout << "Enter the numbers of races in your season: ";
+    cin >> numberOfRaces;
+
+    for(int race = 1; race <= numberOfRaces; race++){
+        cout << "\n==============================\n";
+        cout << "Race " << race << "\n";
+        cout << "===============================\n";
+
+        simulateRace(drivers, standings, rng);
+    }
+
+    displayStandings(standings);
+
+    return 0;
+}
