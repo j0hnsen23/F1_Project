@@ -12,6 +12,9 @@ struct Driver{
     int points;
 };
 
+//6% chance of a DNF
+const float DNF_RATE = 0.08;
+
 int pointsTable[10] = {25,18,15,12,10,8,6,4,2,1};
 
 void simulateRace(
@@ -38,24 +41,63 @@ void simulateRace(
         order[j] = temp;
     }
 
-    //Print the result of the race
-    cout << "\n === Race Result === \n";
+    //DNF or not?
+    uniform_real_distribution<float> dnfRoll(0.0f, 1.0f);
 
-    for (int position = 0; position < driverCount; position++){
-        int driverIndex = order[position];
+    //true = Finished / false = DNF
+    bool didFinish[22];
 
-        cout << "P" << (position + 1) << " | "
-             << Drivers[driverIndex].name
-             << " (" << Drivers[driverIndex].team << ") \n";
+    for (int i = 0; i < driverCount; i++) {
+    didFinish[i] = true;
     }
 
-    //Award points for top 10
-    for(int pos = 0; pos < driverCount && pos < 10; pos++){
-        int index = order[pos];
-        Standings[index].points += pointsTable[pos];
+    // Decide DNFs
+    for (int pos = 0; pos < driverCount; pos++) {
+        int driverIndex = order[pos];
+        if (dnfRoll(RandomNumberGenerator) < DNF_RATE) {
+        didFinish[driverIndex] = false;
+        }
+    }
+
+    // Print race result
+    cout << "\n === Race Result === \n";
+
+    int classifiedPosition = 1;
+
+    // Print finishers in race order
+    for (int pos = 0; pos < driverCount; pos++) {
+        int driverIndex = order[pos];
+
+    if (didFinish[driverIndex]) {
+        cout << "P" << classifiedPosition << " | "
+             << Drivers[driverIndex].name
+             << " (" << Drivers[driverIndex].team << ")\n";
+        classifiedPosition++;
     }
 }
 
+    // Print DNFs at the end
+    for (int pos = 0; pos < driverCount; pos++) {
+        int driverIndex = order[pos];
+
+    if (!didFinish[driverIndex]) {
+        cout << "DNF | "
+             << Drivers[driverIndex].name
+             << " (" << Drivers[driverIndex].team << ")\n";
+    }
+}
+
+    // Award points to top 10 finishers only
+    classifiedPosition = 0;
+    for (int pos = 0; pos < driverCount && classifiedPosition < 10; pos++) {
+        int driverIndex = order[pos];
+
+    if (didFinish[driverIndex]) {
+        Standings[driverIndex].points += pointsTable[classifiedPosition];
+        classifiedPosition++;
+    }
+}
+}
 void displayStandings(vector<Driver>& standings) {
         sort(standings.begin(), standings.end(),
             [](const Driver& a, const Driver& b){
