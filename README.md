@@ -43,8 +43,6 @@ When the program starts, you will be prompted to choose how many races to simula
 ```text
 Enter the numbers of races in your season:
 
----
-
 ==============================
 Race 1
 ===============================
@@ -55,7 +53,6 @@ P3 | Driver Name (Team)
 ...
 DNF | Driver Name (Team)
 DNF | Driver Name (Team)
-
 
  === Standings ===
 1. Driver Name (Team) - 132 points
